@@ -1,18 +1,16 @@
 pipeline {
     agent any
+    environment {
+        PATH = "D:\softwares\maven"
+    }
     stages {
-        stage('Build') {
-            steps {
-                cmd: mvn clean package
-                }
+        stage("clone code"){
+            steps{
+                url:'https://github.com/Hssanjay/jenkinsjob.git'
+            }
         }
-     }
-    post {
-       always {
-          junit(
-        allowEmptyResults: true,
-        testResults: '*/test-reports/.xml'
-      )
-      }
-   } 
-}
+        stage ("build code"){
+            steps{
+                sh "mvn clean install"
+            }
+        }
