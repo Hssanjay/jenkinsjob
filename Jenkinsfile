@@ -6,7 +6,7 @@ pipeline {
     stages {
         stage("clone code"){
             steps{
-                url:'https://github.com/Hssanjay/jenkinsjob.git'
+               git url:'https://github.com/Hssanjay/jenkinsjob.git'
             }
         }
         stage ("build code"){
